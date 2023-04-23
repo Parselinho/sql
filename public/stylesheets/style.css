@@ -70,10 +70,14 @@ button.button:hover {
 }
 
 .cancelBtn {
-  background-color: lightgray;
+  background-color: rgb(158, 121, 65);
   border-color: black;
 }
 
+.cancelBtn:hover {
+  background-color: rgb(128, 97, 97);
+  border-color: black;
+}
 
 .error {
   color: #f44336;
@@ -91,7 +95,11 @@ ul.errors li {
 .update-button {
   display: inline-block;
   margin-right: 1rem;
-  
+}
+
+.edit-cell {
+  padding-left: 20px; /* Adjust the value as needed for desired spacing */
+  text-align: right;
 }
 
 
