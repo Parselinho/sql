@@ -25,11 +25,11 @@ block content
     span= book.year
 
   // Add a form for the "Update" button that points to the '/books/:id/edit' route
-  form(action='/books/' + book.id + '/edit', method='get')
-    input(type='submit', value='Update')
+  form(action='/books/' + book.id + '/edit', method='get', style="display:inline;")
+    input.button(type='submit', value='Update')
 
   // Add the delete form and button here
   form(method="post", action="/books/" + book.id + "/delete", style="display:inline;")
-    button(type="submit") Delete Book
+    button.button(type="submit") Delete Book
 
-  a(href="/books") Cancel
+  a.button(class="cancelBtn" href="/books") Cancel
