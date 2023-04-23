@@ -1,5 +1,13 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h2 Book List
+  div#book-list
+    each book in books
+      div.book
+        h3= book.title
+        p.author= book.author
+        p.genre= book.genre
+        p.year= book.year
+        a(href=`/books/${book.id}`) View Details
+  a(href='/books/new') Add New Book
