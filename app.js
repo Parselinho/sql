@@ -66,9 +66,15 @@ app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // Render the error template, passing the updated err object as the second parameter in the render method
-  res.status(err.status);
-  res.render('error', { err: err });
+  if (err.status === 404) {
+    // Render the page-not-found template if the status is 404
+    res.status(err.status);
+    res.render('page-not-found', { error: err });
+  } else {
+    // Render the error template otherwise
+    res.status(err.status);
+    res.render('error', { err: err });
+  }
 
 });
 
