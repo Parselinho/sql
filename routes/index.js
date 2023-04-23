@@ -31,9 +31,14 @@ router.post('/books/new', async function(req, res, next) {
     const newBook = await Book.create(req.body);
     res.redirect('/books');
   } catch (error) {
-    next(error);
+    if (error instanceof Sequelize.ValidationError) {
+      res.render('new-book', { errors: error.errors, book: req.body });
+    } else {
+      next(error);
+    }
   }
 });
+
 
 
 
@@ -72,6 +77,22 @@ router.post('/books/:id', async function(req, res, next) {
     } else {
       next(error);
     }
+  }
+});
+
+// GET /books/:id/edit - Show the edit book form
+router.get('/books/:id/edit', async function(req, res, next) {
+  try {
+    const book = await Book.findByPk(req.params.id);
+    if (book) {
+      res.render('update-book', { book: book }); // Render the 'edit-book' template with the book object
+    } else {
+      const notFoundError = new Error('Book Not Found');
+      notFoundError.status = 404;
+      next(notFoundError);
+    }
+  } catch (error) {
+    next(error);
   }
 });
 
