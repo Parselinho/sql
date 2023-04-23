@@ -1,27 +1,27 @@
+
 extends layout
 
 block content
   h1 New Book
 
   if errors
-    ul.errors
+    h2.error Oooops!
+    ul.error
       each error in errors
         li= error.message
 
   form(method="post", action="/books/new")
-    p
+    div.form-group
       label(for='title') Title
-      input(name='title', type='text', id='title', value=(book ? book.title : ''))
-    p
+      input.form-control(name='title', type='text', id='title', value=(book ? book.title : ''))
+    div.form-group
       label(for='author') Author
-      input(name='author', type='text', id='author', value=(book ? book.author : ''))
-    p
+      input.form-control(name='author', type='text', id='author', value=(book ? book.author : ''))
+    div.form-group
       label(for='genre') Genre
-      input(name='genre', type='text', id='genre', value=(book ? book.genre : ''))
-    p
+      input.form-control(name='genre', type='text', id='genre', value=(book ? book.genre : ''))
+    div.form-group
       label(for='year') Year
-      input(name='year', type='text', id='year', value=(book ? book.year : ''))
-    p
-      input(type='submit', value='Create New Book')
-    p
-      a(class='button', href='/books') Cancel
+      input.form-control(name='year', type='text', id='year', value=(book ? book.year : ''))
+    button.btn.btn-primary(type='submit') Create New Book
+    a.btn.btn-secondary(href='/books') Cancel
