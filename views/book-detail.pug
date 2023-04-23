@@ -1,0 +1,35 @@
+extends layout
+
+block content
+  h1 Book Details
+
+  if errors
+    ul
+      each error in errors
+        li= error.message
+
+  p
+    label(for="title") Title:
+    span= book.title
+
+  p
+    label(for="author") Author:
+    span= book.author
+
+  p
+    label(for="genre") Genre:
+    span= book.genre
+
+  p
+    label(for="year") Year:
+    span= book.year
+
+  // Add a form for the "Update" button that points to the '/books/:id/edit' route
+  form(action='/books/' + book.id + '/edit', method='get')
+    input(type='submit', value='Update')
+
+  // Add the delete form and button here
+  form(method="post", action="/books/" + book.id + "/delete", style="display:inline;")
+    button(type="submit") Delete Book
+
+  a(href="/books") Cancel
