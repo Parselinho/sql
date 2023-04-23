@@ -12,12 +12,17 @@ router.get('/', function(req, res, next) {
 });
 
 /* GET /books */
-/* GET /books */
+// Route handler for the '/books' GET request
 router.get('/books', async function (req, res, next) {
   try {
+    // Get the search term from the query string, or use an empty string if not provided
     const search = req.query.search || '';
+    // Get the requested page number, or default to the first page if not provided
     const page = parseInt(req.query.page) || 1;
+    // Calculate the offset for pagination based on the current page and the number of books per page
     const offset = (page - 1) * BOOKS_PER_PAGE;
+    
+    // Fetch the books and their count from the database, applying search filters and pagination
     const books = await Book.findAndCountAll({
       where: {
         [Op.or]: [
@@ -30,7 +35,11 @@ router.get('/books', async function (req, res, next) {
       limit: BOOKS_PER_PAGE,
       offset: offset,
     });
+
+    // Calculate the total number of pages needed for the search results
     const totalPages = Math.ceil(books.count / BOOKS_PER_PAGE);
+
+    // Render the 'index' template with the fetched books, search term, current page, and total pages
     res.render('index', {
       title: 'Books',
       books: books.rows,
@@ -39,9 +48,11 @@ router.get('/books', async function (req, res, next) {
       totalPages: totalPages,
     });
   } catch (error) {
+    // Pass any errors to the next middleware for error handling
     next(error);
   }
 });
+
 
 
 
