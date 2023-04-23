@@ -1,23 +1,27 @@
-html
-  head
-    title New Book
-    link(rel='stylesheet', href='../public/stylesheets/style.css')
-  body
-    h1 New Book
-    form
-      p
-        label(for='title') Title
-        input(name='title', type='text', id='title')
-      p
-        label(for='author') Author
-        input(name='author', type='text', id='author')
-      p
-        label(for='genre') Genre
-        input(name='genre', type='text', id='genre')
-      p
-        label(for='year') Year
-        input(name='year', type='text', id='year')
-      p
-        input(type='submit', value='Create New Book')
-      p
-        a(class='button', href='all_books.html') Cancel
+extends layout
+
+block content
+  h1 New Book
+
+  if errors
+    ul.errors
+      each error in errors
+        li= error.message
+
+  form(method="post", action="/books/new")
+    p
+      label(for='title') Title
+      input(name='title', type='text', id='title', value=(book ? book.title : ''))
+    p
+      label(for='author') Author
+      input(name='author', type='text', id='author', value=(book ? book.author : ''))
+    p
+      label(for='genre') Genre
+      input(name='genre', type='text', id='genre', value=(book ? book.genre : ''))
+    p
+      label(for='year') Year
+      input(name='year', type='text', id='year', value=(book ? book.year : ''))
+    p
+      input(type='submit', value='Create New Book')
+    p
+      a(class='button', href='/books') Cancel
