@@ -1,7 +1,14 @@
 doctype html
-html
+html(lang="en")
   head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="/stylesheets/style.css")
+    title Book App
   body
-    block content
+    header
+      h1 Book App
+    main
+      block content
+    footer
+      p &copy; 2023 Book App
