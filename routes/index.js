@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 const { Book } = require('../models'); // Import Book model
 const { Op } = require("sequelize");
+const { Sequelize } = require('sequelize');
+
 
 /* Redirect home page to /books */
 router.get('/', function(req, res, next) {
@@ -38,6 +40,7 @@ router.post('/books/new', async function(req, res, next) {
     }
   }
 });
+
 
 
 
