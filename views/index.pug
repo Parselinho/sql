@@ -5,7 +5,8 @@ block content
   form(action='/books' method='GET')
     input(type='text' name='search' value=search placeholder='Search...')
     button(type='submit') Search
-  a.btn.btn-secondary(href='/books/new' class='add-new-book') Create New Book
+  p 
+    a.button(href='/books/new') Create New Book
   table
     thead
       tr
@@ -16,34 +17,32 @@ block content
     tbody
       each book in books
         tr
-          td= book.title
+          td  
+            a(href=`/books/${book.id}`)= book.title
           td= book.author
           td= book.genre
           td= book.year
-          td.text-right.edit-cell
-            a(href=`/books/${book.id}/edit`) Edit
- 
-
-
+          //- td.text-right.edit-cell
+          //-   a(href=`/books/${book.id}/edit`) Edit
 
   nav(aria-label='Page navigation')
     // - ul with a "pagination" class contains list items (li) for each page number and navigation arrows
-    ul.pagination
+    ul
       // - The first li has a "disabled" class if the current page (page) is 1, preventing the user from going to the previous page
       // - The first li's a element has a "page-link" class and an "aria-label" attribute for accessibility
       // - The first li's a element contains a span with a left arrow (&laquo;) as its content
-      li.page-item(class=page === 1 ? 'disabled' : '')
-        a.page-link(href=`/books?page=${page - 1}&search=${search}`, aria-label='Previous')
+      li(class=page === 1 ? 'disabled' : '')
+        a(href=`/books?page=${page - 1}&search=${search}`, aria-label='Previous')
           span(aria-hidden='true') &laquo;
       // - The each loop generates page number list items (li) for each available page (totalPages)
       each i in Array(totalPages).fill().map((x,i)=> i+1)
         //   - The li has an "active" class if the current page (page) is equal to the loop index (i)
         //   - The li's a element has a "page-link" class and contains the page number (i) as its content
-        li.page-item(class=page === i ? 'active' : '')
-          a.page-link(href=`/books?page=${i}&search=${search}`) #{i}
+        li(class=page === i ? 'active' : '')
+          a(href=`/books?page=${i}&search=${search}`) #{i}
       // - The last li has a "disabled" class if the current page (page) is equal to the total number of pages (totalPages), preventing the user from going to the next page
       // - The last li's a element has a "page-link" class and an "aria-label" attribute for accessibility
       // - The last li's a element contains a span with a right arrow (&raquo;) as its content
-      li.page-item(class=page === totalPages ? 'disabled' : '')
-        a.page-link(href=`/books?page=${page + 1}&search=${search}`, aria-label='Next')
+      li(class=page === totalPages ? 'disabled' : '')
+        a(href=`/books?page=${page + 1}&search=${search}`, aria-label='Next')
           span(aria-hidden='true') &raquo;
