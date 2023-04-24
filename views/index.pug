@@ -5,6 +5,7 @@ block content
   form(action='/books' method='GET')
     input(type='text' name='search' value=search placeholder='Search...')
     button(type='submit') Search
+  a.btn.btn-secondary(href='/books/new' class='add-new-book') Create New Book
   table
     thead
       tr
@@ -21,7 +22,7 @@ block content
           td= book.year
           td.text-right.edit-cell
             a(href=`/books/${book.id}/edit`) Edit
-  a.btn.btn-secondary(href='/books/new' class='add-new-book') Add New Book
+ 
 
 
 
