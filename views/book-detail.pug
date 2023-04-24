@@ -24,10 +24,18 @@ block content
     label(for="year") Year:
     span= book.year
 
-  form(action='/books/' + book.id + '/edit', method='get', style="display:inline;")
-    input.button(type='submit', value='Update')
+  p 
+    form(action='/books/' + book.id + '/edit', method='get', style="display:inline;")
+      input.button(type='submit', value='Update')
+      br
 
-  form(method="post", action="/books/" + book.id + "/delete", style="display:inline;")
-    button.button(type="submit") Delete Book
+  p
+    form(method="post", action="/books/" + book.id + "/delete", style="display:inline;")
+      input.button(type='submit', value='Delete Book')
+      br
 
-  a.button(class="cancelBtn" href="/books") Cancel
+  p
+    form(method="get", action="/books", style="display:inline;")
+      input.button(type='submit', value='Cancel')
+
+
