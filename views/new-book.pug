@@ -1,4 +1,3 @@
-
 extends layout
 
 block content
@@ -11,17 +10,21 @@ block content
         li= error.message
 
   form(method="post", action="/books/new")
-    div.form-group
+
+    p
       label(for='title') Title
-      input.form-control(name='title', type='text', id='title', value=(book ? book.title : ''))
-    div.form-group
+      input(name='title', type='text', id='title', value=(book ? book.title : ''))
+
+    p
       label(for='author') Author
-      input.form-control(name='author', type='text', id='author', value=(book ? book.author : ''))
-    div.form-group
+      input(name='author', type='text', id='author', value=(book ? book.author : ''))
+    p
       label(for='genre') Genre
-      input.form-control(name='genre', type='text', id='genre', value=(book ? book.genre : ''))
-    div.form-group
+      input(name='genre', type='text', id='genre', value=(book ? book.genre : ''))
+    p
       label(for='year') Year
-      input.form-control(name='year', type='text', id='year', value=(book ? book.year : ''))
-    button.btn.btn-primary(type='submit') Create New Book
-    a.btn.btn-secondary(href='/books') Cancel
+      input(name='year', type='text', id='year', value=(book ? book.year : ''))
+    p
+      input(type='submit', value='Create New Book')
+    p
+      a.button(href='/books') Cancel
